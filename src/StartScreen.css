@@ -48,13 +48,32 @@
 /* Glow overlays (tweak to your image) */
 .sc-glow { position: absolute; border-radius: 18px; pointer-events: none; }
 
-/* Cabin glow region */
-.sc-glowCabin, .sc-glowCabinOn {
-  left: 12%; bottom: 22%; width: 12%; height: 18%;
-  box-shadow: 0 0 20px 8px rgba(255,190,80,0.28);
-  transition: box-shadow 0.15s ease;
+/* Cabin SVG glow (fits the cabin shape) */
+.sc-cabinGlow {
+  position: absolute;
+  /* Position this box so it sits over the cabin.
+     Tweak these four values to line it up perfectly. */
+  left: 12%;      /* move right/left */
+  bottom: 22%;    /* move up/down */
+  width: 14%;     /* scale width */
+  height: 24%;    /* scale height */
+
+  fill: rgba(255, 190, 80, 0.10);  /* subtle inner tint */
+  filter:
+    drop-shadow(0 0 10px rgba(255, 190, 80, 0.35))
+    drop-shadow(0 0 24px rgba(255, 190, 80, 0.25));
+  transition: fill 0.15s ease, filter 0.15s ease;
+  pointer-events: none;  /* so it doesn't block your hot-zones */
 }
-.sc-glowCabinOn { box-shadow: 0 0 52px 24px rgba(255,190,80,0.55); }
+
+/* Brighter when hovering the cabin */
+.sc-cabinGlow.on {
+  fill: rgba(255, 190, 80, 0.18);
+  filter:
+    drop-shadow(0 0 14px rgba(255, 190, 80, 0.55))
+    drop-shadow(0 0 40px rgba(255, 190, 80, 0.45));
+}
+
 
 /* Crystal glow region */
 .sc-glowCrystal, .sc-glowCrystalOn {
@@ -72,7 +91,7 @@
 .sc-hotCrystal { right: 24%; bottom: 18%; width: 20%; height: 32%; }
 
 /* Info button + tooltip near cabin */
-.sc-infoWrap { position: absolute; left: 26%; bottom: 28%; display: flex; align-items: center; }
+.sc-infoWrap { position: absolute; left: 30%; bottom: 32%; display: flex; align-items: center; }
 .sc-infoBtn {
   width: 24px; height: 24px; border-radius: 999px;
   background: #3b82f6; color: #fff; font-weight: 700; border: 0;
