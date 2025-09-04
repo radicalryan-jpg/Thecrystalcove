@@ -38,15 +38,11 @@ export default function StartScreen({
       {/* Interactive overlays (active after Play) */}
       {started && (
         <>
-         {/* Cabin glow overlay (SVG so it matches the cabin + roof shape) */}
-          <svg
-          className={`sc-cabinGlow ${hoverCabin ? "on" : ""}`}
-          viewBox="0 0 100 100"
-            aria-hidden
-            >
-          {/* House body + roof peak (adjust points if needed) */}
-              <path d="M15 65 L15 42 L50 25 L85 42 L85 65 Z" />
-              </svg>
+         // ...inside {started && ( <> ... </> )}
+{/* Cabin window glows (subtle idle, brighter on hover) */}
+<div className={`sc-windowGlow sc-windowLeft ${hoverCabin ? "on" : ""}`} aria-hidden />
+<div className={`sc-windowGlow sc-windowFront ${hoverCabin ? "on" : ""}`} aria-hidden />
+
 
           {/* Crystal glow overlay */}
           <div
