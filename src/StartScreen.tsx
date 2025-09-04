@@ -30,7 +30,6 @@ export default function StartScreen({
     >
       {/* Title + Play (fade out after click) */}
       <div className={`sc-titleWrap ${started ? "sc-fadeOut" : ""}`}>
-        <h1 className="sc-title">THE CRYSTAL COVE</h1>
         <button className="sc-playBtn" onClick={handleStart} aria-label="Play">
           Play
         </button>
