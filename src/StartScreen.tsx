@@ -44,42 +44,7 @@ export default function StartScreen({
 <div className={`sc-windowGlow sc-windowFront ${hoverCabin ? "on" : ""}`} aria-hidden />
 
 
-        {/* Crystal outline overlay (matches shards; glows on hover) */}
-<svg
-  className={`sc-crystalOutline ${hoverCrystal ? "on" : ""}`}
-  viewBox="0 0 100 100"
-  aria-hidden
->
-  {/* center tall shard */}
-  <path
-    className="sc-crystalPath"
-    d="M50 14 L58 38 L58 70 L42 70 L42 38 Z"
-  />
-  {/* left large shard */}
-  <path
-    className="sc-crystalPath"
-    d="M33 35 L39 48 L39 72 L27 72 L27 52 Z"
-  />
-  {/* right large shard */}
-  <path
-    className="sc-crystalPath"
-    d="M67 35 L73 52 L73 72 L61 72 L61 48 Z"
-  />
-  {/* far-left small shard */}
-  <path
-    className="sc-crystalPath"
-    d="M23 48 L28 58 L28 70 L20 70 L20 60 Z"
-  />
-  {/* far-right small shard */}
-  <path
-    className="sc-crystalPath"
-    d="M77 48 L82 60 L82 70 L74 70 L74 58 Z"
-  />
-  {/* base chips (optional accents) */}
-  <path className="sc-crystalChip" d="M36 72 L41 76 L34 76 Z" />
-  <path className="sc-crystalChip" d="M64 72 L69 76 L62 76 Z" />
-</svg>
-
+     
 
           {/* Invisible hot-zones for hover detection */}
           <button
