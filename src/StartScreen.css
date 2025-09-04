@@ -48,30 +48,45 @@
 /* Glow overlays (tweak to your image) */
 .sc-glow { position: absolute; border-radius: 18px; pointer-events: none; }
 
-/* Cabin SVG glow (fits the cabin shape) */
-.sc-cabinGlow {
+/* Base style for a small light puff */
+.sc-windowGlow {
   position: absolute;
-  /* Position this box so it sits over the cabin.
-     Tweak these four values to line it up perfectly. */
-  left: 12%;      /* move right/left */
-  bottom: 22%;    /* move up/down */
-  width: 14%;     /* scale width */
-  height: 24%;    /* scale height */
-
-  fill: rgba(255, 190, 80, 0.10);  /* subtle inner tint */
-  filter:
-    drop-shadow(0 0 10px rgba(255, 190, 80, 0.35))
-    drop-shadow(0 0 24px rgba(255, 190, 80, 0.25));
-  transition: fill 0.15s ease, filter 0.15s ease;
-  pointer-events: none;  /* so it doesn't block your hot-zones */
+  pointer-events: none;
+  border-radius: 999px;
+  opacity: 0.9;
+  /* idle window light (soft) */
+  box-shadow:
+    0 0 10px 6px rgba(255, 190, 80, 0.35),
+    0 0 22px 10px rgba(255, 150, 40, 0.25);
+  transition: box-shadow 120ms ease, opacity 120ms ease;
 }
 
-/* Brighter when hovering the cabin */
-.sc-cabinGlow.on {
-  fill: rgba(255, 190, 80, 0.18);
-  filter:
-    drop-shadow(0 0 14px rgba(255, 190, 80, 0.55))
-    drop-shadow(0 0 40px rgba(255, 190, 80, 0.45));
+/* Brighter when hovering cabin */
+.sc-windowGlow.on {
+  opacity: 1;
+  box-shadow:
+    0 0 16px 10px rgba(255, 200, 90, 0.65),
+    0 0 36px 18px rgba(255, 170, 60, 0.45),
+    0 0 64px 28px rgba(255, 150, 40, 0.30);
+}
+
+/* Position these to sit over your windows (adjust to your image) */
+.sc-windowLeft {
+  /* tiny left-side window */
+  left: 16.6%;   /* ← move horizontally */
+  bottom: 27.4%; /* ↑ move vertically */
+  width: 1.8%;   /* size */
+  height: 3.2%;
+}
+
+.sc-windowFront {
+  /* larger front window */
+  left: 21.9%;
+  bottom: 25.7%;
+  width: 3.2%;
+  height: 5.0%;
+}
+
 }
 
 
