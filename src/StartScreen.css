@@ -78,7 +78,6 @@
   width: 1.8%;   /* size */
   height: 3.2%;
 }
-
 .sc-windowFront {
   /* larger front window */
   left: 21.9%;
@@ -89,52 +88,6 @@
 
 }
 
-
-/* Position the SVG exactly over the crystal cluster.
-   Tweak these % values until the paths line up with your PNG. */
-.sc-crystalOutline {
-  position: absolute;
-  right: 26%;    /* ← move horizontally */
-  bottom: 22%;   /* ↑ move vertically */
-  width: 16%;    /* scale width */
-  height: 26%;   /* scale height */
-  pointer-events: none; /* does not block hot-zone clicks/hover */
-}
-
-/* stroke-only paths that glow */
-.sc-crystalPath {
-  fill: none;
-  stroke: rgba(90, 210, 255, 0.65);
-  stroke-width: 2.2;
-  filter:
-    drop-shadow(0 0 4px rgba(90, 210, 255, 0.5))
-    drop-shadow(0 0 10px rgba(80, 200, 255, 0.45));
-  transition: stroke 140ms ease, filter 140ms ease;
-}
-
-/* small base chips (subtler) */
-.sc-crystalChip {
-  fill: none;
-  stroke: rgba(90, 210, 255, 0.45);
-  stroke-width: 1.6;
-  filter: drop-shadow(0 0 3px rgba(80, 200, 255, 0.35));
-  transition: stroke 140ms ease, filter 140ms ease;
-}
-
-/* brighter glow when hovering the crystal */
-.sc-crystalOutline.on .sc-crystalPath {
-  stroke: rgba(110, 240, 255, 0.95);
-  filter:
-    drop-shadow(0 0 8px rgba(110, 240, 255, 0.75))
-    drop-shadow(0 0 18px rgba(110, 240, 255, 0.65))
-    drop-shadow(0 0 34px rgba(80, 220, 255, 0.45));
-}
-.sc-crystalOutline.on .sc-crystalChip {
-  stroke: rgba(110, 240, 255, 0.8);
-  filter:
-    drop-shadow(0 0 6px rgba(110, 240, 255, 0.6))
-    drop-shadow(0 0 14px rgba(80, 220, 255, 0.5));
-}
 
 
 /* Hot-zones (invisible buttons) */
