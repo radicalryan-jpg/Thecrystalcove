@@ -1,4 +1,3 @@
-/* Root canvas */
 .sc-root {
   /* tweak this % to zoom in/out: smaller = more zoomed out */
   --bg-zoom: 90%;
@@ -6,7 +5,7 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  background-image: var(--sc-bg); /* set from TSX */
+  background-image: var(--sc-bg);
   background-size: var(--bg-zoom) auto; /* zoomed OUT */
   background-position: center top;
   background-repeat: no-repeat;
@@ -15,27 +14,18 @@
   font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
 }
 
-
-/* Title + play */
+/* Play button wrapper */
 .sc-titleWrap {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 14%;           /* lower or raise as needed */
+  top: 14%; /* adjust this value to move button higher/lower */
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.sc-fadeOut { opacity: 0; pointer-events: none; }
 
-.sc-title {
-  color: #f6c453;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  margin: 0;
-}
+/* Play button styling */
 .sc-playBtn {
   background: rgba(246,196,83,0.92);
   color: #1b1b1b;
@@ -45,76 +35,31 @@
   font-size: 1.1rem;
   cursor: pointer;
   transition: transform 0.05s ease, background 0.2s ease;
-  outline: none;              /* no focus ring */
-  box-shadow: none;           /* prevent white box look */
-}
-.sc-playBtn:hover { background: rgba(246,196,83,1); }
-.sc-playBtn:active { transform: translateY(1px); }
-.sc-playBtn:focus { outline: none; box-shadow: none; }
-
-/* Glow overlays (tweak to your image) */
-.sc-glow { position: absolute; border-radius: 18px; pointer-events: none; }
-
-/* Base style for a small light puff */
-.sc-windowGlow {
-  position: absolute;
-  pointer-events: none;
-  border-radius: 999px;
-  opacity: 0.9;
-  /* idle window light (soft) */
-  box-shadow:
-    0 0 10px 6px rgba(255, 190, 80, 0.35),
-    0 0 22px 10px rgba(255, 150, 40, 0.25);
-  transition: box-shadow 120ms ease, opacity 120ms ease;
+  outline: none;
+  box-shadow: none;
 }
 
-/* Brighter when hovering cabin */
-.sc-windowGlow.on {
-  opacity: 1;
-  box-shadow:
-    0 0 16px 10px rgba(255, 200, 90, 0.65),
-    0 0 36px 18px rgba(255, 170, 60, 0.45),
-    0 0 64px 28px rgba(255, 150, 40, 0.30);
+.sc-playBtn:hover {
+  background: rgba(246,196,83,1);
 }
 
-/* Position these to sit over your windows (adjust to your image) */
-.sc-windowLeft {
-  /* tiny left-side window */
-  left: 16.6%;   /* ← move horizontally */
-  bottom: 27.4%; /* ↑ move vertically */
-  width: 1.8%;   /* size */
-  height: 3.2%;
-}
-.sc-windowFront {
-  /* larger front window */
-  left: 21.9%;
-  bottom: 25.7%;
-  width: 3.2%;
-  height: 5.0%;
+.sc-playBtn:active {
+  transform: translateY(1px);
 }
 
+.sc-playBtn:focus {
+  outline: none;
+  box-shadow: none;
 }
 
-
-
-/* Hot-zones (invisible buttons) */
-.sc-hotCabin, .sc-hotCrystal {
-  position: absolute; background: transparent; border: 0; padding: 0; cursor: pointer;
+/* Global reset: kill focus/white boxes on any button */
+button {
+  outline: none;
+  box-shadow: none;
 }
-.sc-hotCabin { left: 10%; bottom: 20%; width: 16%; height: 22%; }
-.sc-hotCrystal { right: 24%; bottom: 18%; width: 20%; height: 32%; }
 
-/* Info button + tooltip near cabin */
-.sc-infoWrap { position: absolute; left: 30%; bottom: 32%; display: flex; align-items: center; }
-.sc-infoBtn {
-  width: 24px; height: 24px; border-radius: 999px;
-  background: #3b82f6; color: #fff; font-weight: 700; border: 0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-  display: flex; align-items: center; justify-content: center;
+button:focus {
+  outline: none;
+  box-shadow: none;
 }
-.sc-tooltip {
-  opacity: 0; transform: translateY(4px); transition: all 0.18s ease;
-  margin-left: 8px; padding: 4px 8px; background: rgba(0,0,0,0.8);
-  color: #fff; font-size: 12px; border-radius: 6px; white-space: nowrap; pointer-events: none;
-}
-.sc-tooltipOn { opacity: 1; transform: translateY(0); }
+
