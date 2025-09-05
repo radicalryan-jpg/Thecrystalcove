@@ -7,11 +7,8 @@ export default function StartScreen() {
 
   return (
     <div className="viewport">
-      {/* This ensures 1920x1080 logical area */}
-      <div
-        className="scene-1080p"
-        style={{ backgroundImage: `url(${bg})` }}
-      >
+      {/* 1920x1080 logical stage with your background */}
+      <div className="scene-1080p" style={{ backgroundImage: `url(${bg})` }}>
         {!started && (
           <div className="ui-layer">
             <button
@@ -28,7 +25,4 @@ export default function StartScreen() {
   );
 }
 
-    </div>
-  );
-}
 
