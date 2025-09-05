@@ -1,26 +1,30 @@
 /* Root canvas */
 .sc-root {
+  /* tweak this % to zoom in/out: smaller = more zoomed out */
+  --bg-zoom: 90%;
+
   position: relative;
   width: 100%;
   height: 100vh;
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
+  background-image: var(--sc-bg); /* set from TSX */
+  background-size: var(--bg-zoom) auto; /* zoomed OUT */
+  background-position: center top;
+  background-repeat: no-repeat;
   background-color: #000; /* fallback */
+  overflow: hidden;
   font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
 }
+
 
 /* Title + play */
 .sc-titleWrap {
   position: absolute;
-  inset: 0 auto auto 0;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 14%;           /* lower or raise as needed */
   display: flex;
-  flex-direction: column;
   align-items: center;
-  margin-top: 8rem;   /* was 2.5rem, now much lower */
-  gap: 0.75rem;
-  transition: opacity 0.4s ease;
+  justify-content: center;
 }
 .sc-fadeOut { opacity: 0; pointer-events: none; }
 
@@ -41,9 +45,12 @@
   font-size: 1.1rem;
   cursor: pointer;
   transition: transform 0.05s ease, background 0.2s ease;
+  outline: none;              /* no focus ring */
+  box-shadow: none;           /* prevent white box look */
 }
 .sc-playBtn:hover { background: rgba(246,196,83,1); }
 .sc-playBtn:active { transform: translateY(1px); }
+.sc-playBtn:focus { outline: none; box-shadow: none; }
 
 /* Glow overlays (tweak to your image) */
 .sc-glow { position: absolute; border-radius: 18px; pointer-events: none; }
