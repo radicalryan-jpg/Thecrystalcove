@@ -1,6 +1,6 @@
 .sc-root {
   /* tweak this % to zoom in/out: smaller = more zoomed out */
-  --bg-zoom: 90%;
+  --bg-zoom: 110%;
 
   position: relative;
   width: 100%;
