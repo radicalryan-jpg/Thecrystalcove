@@ -1,65 +1,54 @@
-.sc-root {
-  /* tweak this % to zoom in/out: smaller = more zoomed out */
-  --bg-zoom: 110%;
-
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background-image: var(--sc-bg);
-  background-size: var(--bg-zoom) auto; /* zoomed OUT */
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-color: #000; /* fallback */
+/* Full-window center with letterboxing */
+.viewport {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #000;            /* black bars when not 16:9 */
   overflow: hidden;
   font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
 }
 
-/* Play button wrapper */
-.sc-titleWrap {
+/* Logical 1920x1080 stage (keeps 16:9) */
+.scene-1080p {
+  aspect-ratio: 16 / 9;
+  width: min(100vw, calc(100vh * (16 / 9)));
+  height: auto;
+
+  position: relative;
+  background-size: 100% 100%;  /* stretch to fill stage */
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Overlay for UI like Play button */
+.ui-layer {
+  position: absolute;
+  inset: 0;
+}
+
+/* Play button placed further down under the title */
+.play-btn {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  top: 14%; /* adjust this value to move button higher/lower */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Play button styling */
-.sc-playBtn {
+  top: 22%;                    /* was 14%, now LOWER */
   background: rgba(246,196,83,0.92);
   color: #1b1b1b;
   border: 0;
   border-radius: 12px;
-  padding: 10px 18px;
-  font-size: 1.1rem;
+  padding: 12px 20px;
+  font-size: 1.2rem;
   cursor: pointer;
   transition: transform 0.05s ease, background 0.2s ease;
   outline: none;
   box-shadow: none;
 }
+.play-btn:hover { background: rgba(246,196,83,1); }
+.play-btn:active { transform: translate(-50%, 1px); }
 
-.sc-playBtn:hover {
-  background: rgba(246,196,83,1);
-}
-
-.sc-playBtn:active {
-  transform: translateY(1px);
-}
-
-.sc-playBtn:focus {
+/* Global reset: removes white focus boxes */
+button, button:focus {
   outline: none;
   box-shadow: none;
 }
-
-/* Global reset: kill focus/white boxes on any button */
-button {
-  outline: none;
-  box-shadow: none;
-}
-
-button:focus {
-  outline: none;
-  box-shadow: none;
-}
-
