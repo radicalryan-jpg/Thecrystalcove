@@ -4,56 +4,128 @@
   inset: 0;
   display: grid;
   place-items: center;
-  background: #000;            /* black bars when not 16:9 */
+  background: #000;
   overflow: hidden;
   font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
 }
 
-/* Logical 1920x1080 stage (keeps 16:9) */
+/* 16:9 stage that scales; your 1920x1080 art fills it */
 .scene-1080p {
   aspect-ratio: 16 / 9;
   width: min(100vw, calc(100vh * (16 / 9)));
   height: auto;
-
   position: relative;
-  background-size: 100% 100%;  /* stretch to fill stage */
+  background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-/* Overlay for UI like Play button */
+/* UI layer for all overlays/hotspots */
 .ui-layer {
   position: absolute;
   inset: 0;
 }
 
-/* Play button under the baked-in title */
-.play-btn {
+/* --------------------- HOTSPOTS (transparent) --------------------- */
+/* Adjust these % values to line up with your PNG precisely. */
+
+.hot-cabin {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 26%;              /* was 32%, now CLOSER to the title */
-
-  /* Golden yellow like the title */
-  background: #d4af37;
-  color: #1b1b1b;
-
-  border: 0;
-  border-radius: 10px;
-  padding: 8px 16px;      /* smaller size */
-  font-size: 1rem;        /* smaller text */
-  font-weight: bold;
+  left: 12%;
+  bottom: 22%;
+  width: 14%;
+  height: 24%;
+  background: transparent;
   cursor: pointer;
-
-  transition: transform 0.05s ease, background 0.2s ease;
-  outline: none;
-  box-shadow: none;
 }
 
-.play-btn:hover {
-  background: #e0b93f; /* slightly brighter hover shade */
+.hot-crystal {
+  position: absolute;
+  right: 24%;
+  bottom: 18%;
+  width: 20%;
+  height: 32%;
+  background: transparent;
+  cursor: pointer;
 }
 
-.play-btn:active {
-  transform: translate(-50%, 1px);
+/* --------------------- GLOWS (visual only) --------------------- */
+
+/* Cabin windows (idle + brighter on hover) */
+.windowGlow {
+  position: absolute;
+  border-radius: 4px;
+  background: rgba(255, 180, 60, 0.22);
+  box-shadow: 0 0 10px 5px rgba(255, 180, 60, 0.30);
+  transition: all 0.18s ease;
+  pointer-events: none;
 }
+.windowGlow.on {
+  background: rgba(255, 200, 90, 0.42);
+  box-shadow:
+    0 0 18px 9px rgba(255, 190, 80, 0.58),
+    0 0 34px 18px rgba(255, 160, 50, 0.42);
+}
+
+/* Position to match the two windows in your PNG */
+.windowLeft  { left: 16.5%; bottom: 28.0%; width: 2.0%; height: 3.0%; }
+.windowFront { left: 21.8%; bottom: 25.5%; width: 3.0%; height: 5.0%; }
+
+/* Door slit */
+.doorGlow {
+  position: absolute;
+  left: 23.6%;
+  bottom: 23.6%;
+  width: 1.2%;
+  height: 3.2%;
+  border-radius: 2px;
+  background: rgba(255, 180, 60, 0.22);
+  box-shadow: 0 0 10px 5px rgba(255, 180, 60, 0.28);
+  transition: all 0.18s ease;
+  pointer-events: none;
+}
+.doorGlow.on {
+  background: rgba(255, 200, 90, 0.42);
+  box-shadow: 0 0 18px 8px rgba(255, 190, 80, 0.56);
+}
+
+/* Crystal area glow (soft box behind cluster) */
+.crystalGlow {
+  position: absolute;
+  right: 26%;
+  bottom: 22%;
+  width: 16%;
+  height: 26%;
+  border-radius: 12px;
+  background: rgba(90, 210, 255, 0.18);
+  box-shadow: 0 0 18px rgba(90, 210, 255, 0.38);
+  transition: all 0.18s ease;
+  pointer-events: none;
+}
+.crystalGlow.on {
+  background: rgba(90, 210, 255, 0.34);
+  box-shadow:
+    0 0 26px rgba(90, 210, 255, 0.62),
+    0 0 48px rgba(90, 210, 255, 0.52);
+}
+
+/* --------------------- TOOLTIPS --------------------- */
+
+.tooltip {
+  position: absolute;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.84);
+  border-radius: 8px;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translateY(-6px);
+}
+
+/* Place tooltips near their hotspots (tweak offsets as needed) */
+.tooltip-cabin   { left: 20%; bottom: 47%; }
+.tooltip-crystal { right: 28%; bottom: 52%; }
+
+/* Remove default focus rings everywhere (no white boxes) */
+button, button:focus { outline: none; box-shadow: none; }
