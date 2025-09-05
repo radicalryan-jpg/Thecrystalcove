@@ -1,81 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./StartScreen.css";
+import bg from "./assets/the-crystal-cove.png";
 
-/**
- * Props:
- *  - bg: background image (your Crystal Cove art)
- *  - onStart?: callback when Play is clicked (optional)
- */
-export default function StartScreen({
-  bg,
-  onStart,
-}: {
-  bg: string;
-  onStart?: () => void;
-}) {
+export default function StartScreen() {
+  // Keep a started flag only if you still want to react to Play
   const [started, setStarted] = useState(false);
-  const [hoverCabin, setHoverCabin] = useState(false);
-  const [hoverCrystal, setHoverCrystal] = useState(false);
-  const [hoverInfo, setHoverInfo] = useState(false);
 
-  const handleStart = () => {
-    setStarted(true);
-    onStart?.();
-  };
+  // provide the bg to CSS so we can use background-size zooming
+  useEffect(() => {
+    document.documentElement.style.setProperty("--sc-bg", `url(${bg})`);
+  }, []);
 
   return (
-    <div
-      className="sc-root"
-      style={{ backgroundImage: `url(${bg})` }}
-    >
-      {/* Title + Play (fade out after click) */}
-      <div className={`sc-titleWrap ${started ? "sc-fadeOut" : ""}`}>
-        <button className="sc-playBtn" onClick={handleStart} aria-label="Play">
-          Play
-        </button>
-      </div>
-
-      {/* Interactive overlays (active after Play) */}
-      {started && (
-        <>
-         // ...inside {started && ( <> ... </> )}
-{/* Cabin window glows (subtle idle, brighter on hover) */}
-<div className={`sc-windowGlow sc-windowLeft ${hoverCabin ? "on" : ""}`} aria-hidden />
-<div className={`sc-windowGlow sc-windowFront ${hoverCabin ? "on" : ""}`} aria-hidden />
-
-
-     
-
-          {/* Invisible hot-zones for hover detection */}
+    <div className="sc-root">
+      {/* Title is baked into the image.
+          We only render the Play button and place it below the title area. */}
+      {!started && (
+        <div className="sc-titleWrap">
           <button
-            aria-label="Cabin"
-            className="sc-hotCabin"
-            onMouseEnter={() => setHoverCabin(true)}
-            onMouseLeave={() => setHoverCabin(false)}
-          />
-          <button
-            aria-label="Crystal entrance"
-            className="sc-hotCrystal"
-            onMouseEnter={() => setHoverCrystal(true)}
-            onMouseLeave={() => setHoverCrystal(false)}
-          />
-
-          {/* Info button + tooltip (blue i) */}
-          <div className="sc-infoWrap">
-            <button
-              aria-label="Info"
-              className="sc-infoBtn"
-              onMouseEnter={() => setHoverInfo(true)}
-              onMouseLeave={() => setHoverInfo(false)}
-            >
-              i
-            </button>
-            <div className={`sc-tooltip ${hoverInfo ? "sc-tooltipOn" : ""}`}>
-              for those that want guides
-            </div>
-          </div>
-        </>
+            className="sc-playBtn"
+            onClick={() => setStarted(true)}
+            aria-label="Play"
+          >
+            Play
+          </button>
+        </div>
       )}
+
+      {/* All highlight/hot-zone/tooltip elements have been REMOVED */}
     </div>
   );
 }
+
